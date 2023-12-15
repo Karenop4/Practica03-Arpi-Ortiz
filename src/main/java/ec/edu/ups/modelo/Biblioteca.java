@@ -35,6 +35,9 @@ public class Biblioteca {
 	public void registrarUsuario(Usuario usuario) {
 		listaUsuarios.add(usuario);
 	}
+        public ArrayList <Usuario> devolverListaUsuarios(){
+            return listaUsuarios;
+        }
 	
 	@Override
 	public String toString() {
