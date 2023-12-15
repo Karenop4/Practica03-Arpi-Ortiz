@@ -38,6 +38,7 @@ public class Biblioteca {
 	public void registrarUsuario(Usuario usuario) {
 		listaUsuarios.add(usuario);
 	}
+
 	public void registrarLibro(Libro libro) {
 		listaLibros.add(libro);
 	}
@@ -46,6 +47,11 @@ public class Biblioteca {
 		return listaLibros;
 	}
 	
+
+    public ArrayList <Usuario> devolverListaUsuarios(){
+        return listaUsuarios;
+    }
+
 	
 	@Override
 	public String toString() {

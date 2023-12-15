@@ -15,7 +15,7 @@ public class Principal {
 		
 		IUsuarioDao usuarioDao = new UsuarioDaoImp();
 		UsuarioVista usuarioVista = new UsuarioVista();
-		UsuarioControlador usuarioCont = new UsuarioControlador(usuarioDao,usuarioVista);
+		//UsuarioControlador usuarioCont = new UsuarioControlador(usuarioDao,usuarioVista);
 		
 		Scanner sc = new Scanner(System.in);
 		int opc;//opción menu
