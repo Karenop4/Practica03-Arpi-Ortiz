@@ -22,9 +22,9 @@ public class UsuarioDaoImp implements IUsuarioDao{
 
     @Override
     public boolean actualizarUsuario(String id, Usuario usuario) {
-    		int cont=0;
-                ArrayList <Usuario> listaUsuarios = new ArrayList();
-                listaUsuarios = biblioteca.devolverListaUsuarios();
+    	int cont=0;
+        ArrayList <Usuario> listaUsuarios = new ArrayList();
+        listaUsuarios = biblioteca.devolverListaUsuarios();
 		for(Usuario usuarioBuscado : listaUsuarios) {
 			if(usuarioBuscado.getIdentificacion().equals(id)) {
 				listaUsuarios.set(cont, usuarioBuscado);
@@ -37,13 +37,13 @@ public class UsuarioDaoImp implements IUsuarioDao{
 
     @Override
     public boolean eliminarUsuario(String id) {
-    		int cont=0;
-                ArrayList <Usuario> listaUsuarios = new ArrayList();
-                listaUsuarios = biblioteca.devolverListaUsuarios();
+    	int cont=0;
+        ArrayList <Usuario> listaUsuarios = new ArrayList();
+        listaUsuarios = biblioteca.devolverListaUsuarios();
 		for(Usuario usuarioBuscado : listaUsuarios) {
 			if(usuarioBuscado.getIdentificacion().equals(id)) {
 				listaUsuarios.remove(cont);
-                                return true;
+                return true;
 			}
 			cont++;
 		}
@@ -52,12 +52,12 @@ public class UsuarioDaoImp implements IUsuarioDao{
 
     @Override
     public Usuario obtenerUsuario(String id) {
-    		int cont=0;
-                ArrayList <Usuario> listaUsuarios = new ArrayList();
-                listaUsuarios = biblioteca.devolverListaUsuarios();
+    	int cont=0;
+        ArrayList <Usuario> listaUsuarios = new ArrayList();
+        listaUsuarios = biblioteca.devolverListaUsuarios();
 		for(Usuario usuarioBuscado : listaUsuarios) {
 			if(usuarioBuscado.getIdentificacion().equals(id)) {
-                                return usuarioBuscado;
+				return usuarioBuscado;
 			}
 			cont++;
 		}

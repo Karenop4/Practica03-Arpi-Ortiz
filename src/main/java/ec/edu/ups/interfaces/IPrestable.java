@@ -1,5 +1,8 @@
 package ec.edu.ups.interfaces;
 
-public interface IPrestable {
+import ec.edu.ups.modelo.Libro;
 
+public interface IPrestable {
+	public void prestar (Libro libro);
+	public void devolver (Libro libro);
 }
