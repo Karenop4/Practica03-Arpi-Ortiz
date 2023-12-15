@@ -10,22 +10,21 @@ import ec.edu.ups.modelo.Usuario;
 public class LibroDaoImp implements ILibroDao{
 	private BibliotecaDaoImp bibliotecaDao;
     private Biblioteca biblioteca;
+    private ArrayList <Libro> listaLibros;
+    
     
     public LibroDaoImp() {
-    	
+    	listaLibros = new ArrayList();
     }
     
 	@Override
-	public void crearLibro(Libro libro, String nombreBiblioteca) {
-		this.biblioteca=bibliotecaDao.obtenerBiblioteca(nombreBiblioteca);
+	public void crearLibro(Libro libro) {
 		biblioteca.registrarLibro(libro);
 	}
 
 	@Override
 	public boolean actualizarLibro(String titulo, Libro libro) {
 		int cont=0;
-        ArrayList <Libro> listaLibros = new ArrayList();
-        listaLibros = biblioteca.devolverListaLibros();
 		for(Libro libroBuscado : listaLibros) {
 			if(libroBuscado.getTitulo().equals(titulo)) {
 				listaLibros.set(cont, libroBuscado);
@@ -39,8 +38,6 @@ public class LibroDaoImp implements ILibroDao{
 	@Override
 	public boolean eliminarLibro(String titulo) {
 		int cont=0;
-        ArrayList <Libro> listaLibros = new ArrayList();
-        listaLibros = biblioteca.devolverListaLibros();
 		for(Libro libroBuscado : listaLibros) {
 			if(libroBuscado.getTitulo().equals(titulo)) {
 				listaLibros.remove(cont);
@@ -54,8 +51,6 @@ public class LibroDaoImp implements ILibroDao{
 	@Override
 	public Libro obtenerLibro(String titulo) {
 		int cont=0;
-        ArrayList <Libro> listaLibros = new ArrayList();
-        listaLibros = biblioteca.devolverListaLibros();
 		for(Libro libroBuscado : listaLibros) {
 			if(libroBuscado.getTitulo().equals(titulo)) {
 				return libroBuscado;
