@@ -15,7 +15,7 @@ public class UsuarioVista {
 		String nombre;
 		String correo;
 		
-		System.out.println("                  Ingreso nueva biblioteca");
+		System.out.println("                  Ingreso nuevo usuario");
 		System.out.println("============================================================");
 		System.out.println("Ingrese el id de la persona: ");
 		id = sc.nextLine();            
@@ -31,7 +31,7 @@ public class UsuarioVista {
 		String nombre;
 		String correo;
 		
-		System.out.println("                  Actualización del Usuario");
+		System.out.println("                  ActualizaciÃ³n del Usuario");
 		System.out.println("============================================================");
 		System.out.println("Ingrese el id de la persona: ");
 		id = sc.nextLine();            

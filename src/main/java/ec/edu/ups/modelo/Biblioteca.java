@@ -6,15 +6,18 @@ public class Biblioteca {
 	private String nombre;
 	private String direccion;
 	private ArrayList <Usuario> listaUsuarios;
+	private ArrayList <Libro> listaLibros;
 	
 	//Constructores
 	public Biblioteca() {
 		listaUsuarios = new ArrayList();
+		listaLibros = new ArrayList();
 	}
 	public Biblioteca(String nombre, String direccion) {
 		this.nombre = nombre;
 		this.direccion = direccion;
 		listaUsuarios = new ArrayList();
+		listaLibros = new ArrayList();
 	}
 	
 	//Getters y Setters
@@ -35,11 +38,20 @@ public class Biblioteca {
 	public void registrarUsuario(Usuario usuario) {
 		listaUsuarios.add(usuario);
 	}
+	public void registrarLibro(Libro libro) {
+		listaLibros.add(libro);
+	}
+	
+	public ArrayList<Libro> devolverListaLibros() {
+		return listaLibros;
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "Biblioteca [nombre=" + nombre + ", direccion=" + direccion + "]";
 	}
+	
 	
 	
 	
