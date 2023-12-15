@@ -47,7 +47,7 @@ public class UsuarioVista {
 		
 		System.out.println("                     Eliminar Usuario");
 		System.out.println("============================================================");
-		System.out.println("Ingrese el id de la biblioteca: ");
+		System.out.println("Ingrese el id del usuario: ");
 		id = sc.nextLine();
 		return id;
 	}
