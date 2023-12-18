@@ -32,7 +32,7 @@ private Scanner sc;
                 } catch (ParseException e) {
                     System.out.println("Error al analizar la fecha. Asegúrese de usar el formato dd/MM/yyyy.");
                 }
-		return new Prestamo(nombre, direccion);
+		return null;
 	}
 	
 	

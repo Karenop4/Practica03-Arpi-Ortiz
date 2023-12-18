@@ -1,6 +1,9 @@
 package ec.edu.ups.controlodares;
 
+import java.util.ArrayList;
+
 import ec.edu.ups.idao.IUsuarioDao;
+import ec.edu.ups.modelo.Biblioteca;
 import ec.edu.ups.modelo.Usuario;
 import ec.edu.ups.vistas.UsuarioVista;
 
@@ -8,29 +11,33 @@ public class UsuarioControlador {
 	private IUsuarioDao usuarioDao;
 	private UsuarioVista usuarioVista;
 	private Usuario usuario;
+	private Biblioteca biblioteca;
 	
 	//Constructor
-
-        public UsuarioControlador(IUsuarioDao usuarioDao, UsuarioVista usuarioVista) {
-            this.usuarioDao = usuarioDao;
-            this.usuarioVista = usuarioVista;
-        }
-
-        public UsuarioControlador() {
-        }
     
 
-	
+    public UsuarioControlador(IUsuarioDao usuarioDao, UsuarioVista usuarioVista) {
+		this.usuarioDao = usuarioDao;
+		this.usuarioVista = usuarioVista;
+	}
+
+    
+    public void seleccionarBiblioteca(Biblioteca biblioteca) {
+    	this.biblioteca = biblioteca;	
+    }
+    
 	public void crearUsuario() {
 		usuario = usuarioVista.ingresarDatosUsuario();
+		biblioteca.registrarUsuario(usuario);
 		usuarioDao.crearUsuario(usuario);
+		System.out.println("Usuario Creado");
 	}
 	
 	public void actualizarUsuario() {
 		boolean existe;
 		
 		usuario = usuarioVista.actualizarDatosUsuario();
-		existe = usuarioDao.actualizarUsuario(usuario.getIdentificacion(), usuario);
+		existe = usuarioDao.actualizarUsuario(usuario.getIdentificacion(), usuario, biblioteca);
 		
 		if(existe) {
 			System.out.println("Usuario actualizado correctamente");
@@ -44,6 +51,7 @@ public class UsuarioControlador {
 		
 		String id = usuarioVista.eliminarUsuario();
 		existe = usuarioDao.eliminarUsuario(id);
+		biblioteca.eliminarUsuario(usuario);
 		
 		if(existe) {
 			System.out.println("Usuario eliminado correctamente");
@@ -63,6 +71,13 @@ public class UsuarioControlador {
 			System.out.println("Usuario no encontrado");
 		}else {
 			usuarioVista.mostrarDatosUsuario(usuario.getNombre(), usuario.getCorreo(), usuario.getIdentificacion());
+		}
+	}
+	
+	public void listarUsuarios() {
+		ArrayList <Usuario> listaUsuarios = usuarioDao.obtenerListaUsuarios();
+		for (Usuario usuario : listaUsuarios) {
+			usuarioVista.mostrarDatosUsuario(usuario.getNombre(),usuario.getCorreo(),usuario.getIdentificacion());
 		}
 	}
 	

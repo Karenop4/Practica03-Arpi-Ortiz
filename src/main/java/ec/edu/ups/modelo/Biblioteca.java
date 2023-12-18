@@ -38,6 +38,7 @@ public class Biblioteca {
 	public void registrarUsuario(Usuario usuario) {
 		listaUsuarios.add(usuario);
 	}
+	
 
 	public void registrarLibro(Libro libro) {
 		listaLibros.add(libro);
@@ -51,8 +52,14 @@ public class Biblioteca {
     public ArrayList <Usuario> devolverListaUsuarios(){
         return listaUsuarios;
     }
-
+    
+    public void eliminarUsuario(Usuario usuario) {
+    	listaUsuarios.remove(usuario);
+    }
 	
+    public void actualizarUsuario(int pos, Usuario usuario) {
+    	listaUsuarios.set(pos, usuario);
+    }
 	@Override
 	public String toString() {
 		return "Biblioteca [nombre=" + nombre + ", direccion=" + direccion + "]";

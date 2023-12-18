@@ -19,7 +19,7 @@ public class LibroDaoImp implements ILibroDao{
     
 	@Override
 	public void crearLibro(Libro libro) {
-		biblioteca.registrarLibro(libro);
+		listaLibros.add(libro);
 	}
 
 	@Override

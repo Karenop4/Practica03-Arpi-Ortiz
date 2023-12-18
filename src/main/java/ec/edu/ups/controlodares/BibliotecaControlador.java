@@ -2,9 +2,9 @@ package ec.edu.ups.controlodares;
 
 import java.util.ArrayList;
 
-import ec.edu.ups.idao.IBibliotecaDao;
-import ec.edu.ups.modelo.Biblioteca;
-import ec.edu.ups.vistas.BibliotecaVista;
+import ec.edu.ups.idao.*;
+import ec.edu.ups.modelo.*;
+import ec.edu.ups.vistas.*;
 
 public class BibliotecaControlador {
 	private IBibliotecaDao bibliotecaDao;
@@ -13,19 +13,17 @@ public class BibliotecaControlador {
 	
 	//Constructor
 	public BibliotecaControlador(IBibliotecaDao bibliotecaDao, BibliotecaVista bibliotecaVista) {
-		super();
 		this.bibliotecaDao = bibliotecaDao;
 		this.bibliotecaVista = bibliotecaVista;
 	}
-	public BibliotecaControlador() {
-		biblioteca = new Biblioteca();
-	}
+	
+	
 	
 	public void crearBiblioteca() {
 		biblioteca = bibliotecaVista.ingresarDatosBiblioteca();
 		bibliotecaDao.crearBiblioteca(biblioteca);
 	}
-	
+
 	public void actualizarBiblioteca() {
 		boolean existe;
 		
@@ -72,4 +70,5 @@ public class BibliotecaControlador {
 			bibliotecaVista.mostrarDatosBiblioteca(biblioteca.getNombre(), biblioteca.getDireccion());
 		}
 	}
+	
 }
