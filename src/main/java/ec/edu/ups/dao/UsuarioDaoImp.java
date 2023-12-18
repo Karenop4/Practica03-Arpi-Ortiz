@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class UsuarioDaoImp implements IUsuarioDao{
     
-    private BibliotecaDaoImp bibliotecaDao;
     private Biblioteca biblioteca;
     
     public UsuarioDaoImp() {
@@ -15,8 +14,7 @@ public class UsuarioDaoImp implements IUsuarioDao{
     
     
     @Override
-    public void crearUsusario(Usuario usuario, String nombreBiblioteca) {
-        this.biblioteca=bibliotecaDao.obtenerBiblioteca(nombreBiblioteca);
+    public void crearUsuario(Usuario usuario) {
         biblioteca.registrarUsuario(usuario);
     }
 
