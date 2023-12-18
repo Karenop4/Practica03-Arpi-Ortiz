@@ -1,6 +1,7 @@
 package ec.edu.ups.controlodares;
 
 import ec.edu.ups.idao.IPrestamoDao;
+import ec.edu.ups.modelo.Biblioteca;
 import ec.edu.ups.modelo.Libro;
 import ec.edu.ups.modelo.Prestamo;
 import ec.edu.ups.modelo.Usuario;
@@ -11,8 +12,9 @@ public class PrestamoControlador {
 	private PrestamoVista prestamoVista;
 	private Prestamo prestamo;
         private Usuario usuario;
+        private Biblioteca biblioteca;
 
-    public PrestamoControlador(IPrestamoDao prestamoDao, PrestamoVista prestamoVista, Prestamo prestamo) {
+    public PrestamoControlador(IPrestamoDao prestamoDao, PrestamoVista prestamoVista) {
         this.prestamoDao = prestamoDao;
         this.prestamoVista = prestamoVista;
     }
@@ -21,8 +23,12 @@ public class PrestamoControlador {
         this.usuario=usuario;
     }
     
+    public void seleccionarBiblioteca(Biblioteca biblioteca){
+        this.biblioteca=biblioteca;
+    }
+    
     public void crearPrestamo() {
-            prestamo = prestamoVista.ingresarNuevoPrestamo(usuario);
+            prestamo = prestamoVista.ingresarNuevoPrestamo(usuario, biblioteca);
             if(prestamo!=null){
                 prestamoDao.crearPrestamo(prestamo);
                 usuario.solicitarPrestamo(prestamo);
@@ -33,11 +39,10 @@ public class PrestamoControlador {
 	public void devolucion() {
 		boolean existe;
 		
-		Libro libro = prestamoVista.eliminarPrestamo();
+		Libro libro = prestamoVista.eliminarPrestamo(usuario);
 		existe = prestamoDao.eliminarPrestamo(libro);
-		usuario.devolverLibro(libro);
-		
 		if(existe) {
+                        usuario.devolverLibro(libro);
 			System.out.println("Libro ha sido devuelto!");
 		}else {
 			System.out.println("Libro no ha sido prestado al usuario");

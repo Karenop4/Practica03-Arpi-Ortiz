@@ -45,6 +45,18 @@ public class Usuario extends Persona{
         
 	public ArrayList<Prestamo> devolverListaPrestamos() {
 		return listaPrestamos;
-	}        
+	}
+        
+        public Libro retornarLibro(String titulo){
+            int cont = 0;
+            for(Prestamo prestamo : listaPrestamos){
+                if(prestamo.getLibro().getTitulo().equals(titulo)) {
+                    return listaPrestamos.get(cont).getLibro();
+                }
+                cont++;
+            }
+                return null;
+        }
+	        
 	
 }

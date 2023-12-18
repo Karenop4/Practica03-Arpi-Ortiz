@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import ec.edu.ups.idao.IBibliotecaDao;
 import ec.edu.ups.modelo.Biblioteca;
+import ec.edu.ups.modelo.Libro;
 
 public class BibliotecaDaoImp implements IBibliotecaDao {
 	private ArrayList <Biblioteca> listaBibliotecas;
@@ -63,6 +64,7 @@ public class BibliotecaDaoImp implements IBibliotecaDao {
 	public ArrayList<Biblioteca> obtenerListaBiblliotecas() {
 		return listaBibliotecas;
 	}
+
 	
 	
 	

@@ -1,6 +1,8 @@
 package ec.edu.ups.vistas;
 
 import ec.edu.ups.dao.LibroDaoImp;
+import ec.edu.ups.idao.ILibroDao;
+import ec.edu.ups.modelo.Biblioteca;
 import ec.edu.ups.modelo.Libro;
 import ec.edu.ups.modelo.Prestamo;
 import ec.edu.ups.modelo.Usuario;
@@ -17,8 +19,7 @@ private Scanner sc;
 		sc = new Scanner(System.in);
 	}
 	
-	public Prestamo ingresarNuevoPrestamo (Usuario usuario) {
-		LibroDaoImp libroDao = new LibroDaoImp();
+	public Prestamo ingresarNuevoPrestamo (Usuario usuario, Biblioteca biblioteca) {
 		Date fechaDevolucion = null;
                 LocalDate fechaActual = LocalDate.now();
                 Date fechaDate = java.sql.Date.valueOf(fechaActual);
@@ -27,7 +28,11 @@ private Scanner sc;
 		System.out.println("============================================================");
                 System.out.println("Ingrese el nombre del libro: ");
                 String titulo = sc.next();
-                Libro libro = libroDao.obtenerLibro(titulo);
+                Libro libro = biblioteca.retornarLibro(titulo);
+                if (libro==null){
+                    System.out.println("Libro no existe!");
+                    return null;
+                }
                 if (libro.isDisponoible()==false) {
                     System.out.println("Libro no disponible!");
                     return null;
@@ -45,14 +50,17 @@ private Scanner sc;
 		return new Prestamo(libro, usuario, fechaDate, fechaDevolucion);
         }
 	
-	public Libro eliminarPrestamo() {
-                LibroDaoImp libroDao = new LibroDaoImp();
+	public Libro eliminarPrestamo(Usuario usuario) {
 		String nombre;		
 		System.out.println("                     Devolucion de libro");
 		System.out.println("============================================================");
 		System.out.println("Ingrese el nombre del libro a devolver: ");
                 nombre = sc.nextLine();
-                Libro libro = libroDao.obtenerLibro(nombre);
+                Libro libro = usuario.retornarLibro(nombre);
+                if (libro==null){
+                    System.out.println("Libro no prestado!");
+                    return null;
+                }                
 		return libro;
 	}
 	

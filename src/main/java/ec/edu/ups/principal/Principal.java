@@ -5,6 +5,7 @@ import ec.edu.ups.controlodares.*;
 import ec.edu.ups.dao.*;
 import ec.edu.ups.idao.*;
 import ec.edu.ups.modelo.Biblioteca;
+import ec.edu.ups.modelo.Usuario;
 import ec.edu.ups.vistas.*;
 
 public class Principal {
@@ -18,10 +19,14 @@ public class Principal {
 		
 		ILibroDao libroDao = new LibroDaoImp();
 		LibroVista libroVista = new LibroVista();
+                
+                IPrestamoDao prestamoDao = new PrestamoDaoImp();
+                PrestamoVista prestamoVista = new PrestamoVista();
 		
 		BibliotecaControlador bibliotecaCont = new BibliotecaControlador(bibliotecaDao,bibliotecaVista);
 		UsuarioControlador usuarioCont=new UsuarioControlador(usuarioDao,usuarioVista);
 		LibroControlador libroCont = new LibroControlador(libroDao, libroVista);
+                PrestamoControlador prestamoCont = new PrestamoControlador(prestamoDao, prestamoVista);
 		
 		Scanner sc = new Scanner(System.in);
 		int opc;//opción menu
@@ -77,6 +82,7 @@ public class Principal {
 			    	//Cada controlador selecciona la biblioteca
 			    	usuarioCont.seleccionarBiblioteca(biblioteca);
 					libroCont.seleccionarBiblioteca(biblioteca);
+                                        prestamoCont.seleccionarBiblioteca(biblioteca);
 					
 					
 					do {
@@ -128,7 +134,6 @@ public class Principal {
 									
 									switch(opc) {
 										case 1:
-											sc.nextLine();
 											libroCont.crearLibro();
 											break;
 										case 2:
@@ -148,9 +153,42 @@ public class Principal {
 									}
 								}while(opc!=5);
 								break;
-							case 3:
+							case 3://Prestamo
+                                                            Usuario usuario = new Usuario();
+                                                            String id = usuarioVista.buscarUsuario();
+                                                            usuario = usuarioDao.obtenerUsuario(id);
+                                                            prestamoCont.seleccionarUsuario(usuario);
+                                                                if(usuario!=null){
+
+
+                                                                    do{
+                                                                            System.out.println("1. Solicitar un prestamo");
+                                                                            System.out.println("2. Devolver un libro");
+                                                                            System.out.println("3. Listar Prestamos");
+                                                                            System.out.println("4. Volver al menú principal");
+                                                                            opc = sc.nextInt();
+
+                                                                            switch (opc) {
+                                                                            case 1:
+                                                                                prestamoCont.crearPrestamo();
+                                                                                break;
+                                                                            case 2:
+                                                                                prestamoCont.devolucion();
+                                                                                break;
+                                                                            case 3:
+                                                                                prestamoCont.listarPrestamos();
+                                                                                break;
+                                                                            case 4:
+                                                                                System.out.println("Volviendo...");
+                                                                                break;
+                                                                            default:
+                                                                                System.out.println("ERROR!! Elija otra opción");
+                                                                            }
+                                                                    }while(opc!=4);
+                                                                }
 								break;
 							case 4:
+                                                                System.out.println("Volviendo al menú principal...");
 								break;
 							default:
 								System.out.println("ERROR!! Elija otra opción");

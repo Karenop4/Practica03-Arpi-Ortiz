@@ -21,6 +21,7 @@ public class PrestamoDaoImp implements IPrestamoDao {
     }
 
     public boolean eliminarPrestamo(Libro libro) {
+        listaPrestamos = usuario.devolverListaPrestamos();
         int cont=0;
         for(Prestamo prestamoBuscado : listaPrestamos) {
                 if(prestamoBuscado.getLibro().equals(libro)) {

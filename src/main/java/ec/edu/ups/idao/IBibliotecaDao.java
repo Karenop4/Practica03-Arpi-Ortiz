@@ -3,6 +3,7 @@ package ec.edu.ups.idao;
 import java.util.ArrayList;
 
 import ec.edu.ups.modelo.Biblioteca;
+import ec.edu.ups.modelo.Libro;
 
 public interface IBibliotecaDao {
 	public void crearBiblioteca(Biblioteca biblioteca);

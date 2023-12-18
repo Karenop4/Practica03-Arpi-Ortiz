@@ -76,6 +76,16 @@ public class Biblioteca {
 		return "Biblioteca [nombre=" + nombre + ", direccion=" + direccion + "]";
 	}
 	
+    public Libro retornarLibro(String titulo){
+        int cont = 0;
+        for(Libro libro : listaLibros){
+            if(libro.getTitulo().equals(titulo)) {
+                return listaLibros.get(cont);
+            }
+            cont++;
+        }
+            return null;
+    }
 	
 	
 	

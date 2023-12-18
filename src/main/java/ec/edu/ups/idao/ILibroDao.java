@@ -7,5 +7,5 @@ public interface ILibroDao {
 	public void crearLibro(Libro usuario);
 	public boolean actualizarLibro(String id,Libro libro, Biblioteca biblioteca);
 	public boolean eliminarLibro(String id);
-	public Libro obtenerLibro(String id);
+	public Libro obtenerLibro(String titulo);
 }
