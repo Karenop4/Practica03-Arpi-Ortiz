@@ -35,6 +35,7 @@ public class Biblioteca {
 	}
 	
 	//Metodos
+	/////////Metodos para actualizar lista Usuarios////////
 	public void registrarUsuario(Usuario usuario) {
 		listaUsuarios.add(usuario);
 	}
@@ -52,6 +53,7 @@ public class Biblioteca {
     }
     
     
+    /////////Metodos para actualizar lista Libros////////
     public void registrarLibro(Libro libro) {
 		listaLibros.add(libro);
 	}
@@ -67,6 +69,8 @@ public class Biblioteca {
     public void actualizarLibro(int pos, Libro libro) {
     	listaLibros.set(pos, libro);
     }
+    
+    
 	@Override
 	public String toString() {
 		return "Biblioteca [nombre=" + nombre + ", direccion=" + direccion + "]";

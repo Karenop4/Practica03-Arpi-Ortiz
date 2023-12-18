@@ -11,15 +11,10 @@ public class BibliotecaControlador {
 	private BibliotecaVista bibliotecaVista;
 	private Biblioteca biblioteca;
 	
-	private IUsuarioDao usuarioDao;
-	private UsuarioVista usuarioVista;
-	private Usuario usuario;
 	//Constructor
-	public BibliotecaControlador(IBibliotecaDao bibliotecaDao, BibliotecaVista bibliotecaVista, IUsuarioDao usuarioDao, UsuarioVista usuarioVista) {
+	public BibliotecaControlador(IBibliotecaDao bibliotecaDao, BibliotecaVista bibliotecaVista) {
 		this.bibliotecaDao = bibliotecaDao;
 		this.bibliotecaVista = bibliotecaVista;
-		this.usuarioDao = usuarioDao;
-		this.usuarioVista = usuarioVista;
 	}
 	
 	

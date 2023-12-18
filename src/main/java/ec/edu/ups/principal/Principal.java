@@ -19,9 +19,8 @@ public class Principal {
 		ILibroDao libroDao = new LibroDaoImp();
 		LibroVista libroVista = new LibroVista();
 		
-		BibliotecaControlador bibliotecaCont = new BibliotecaControlador(bibliotecaDao,bibliotecaVista, usuarioDao, usuarioVista);
+		BibliotecaControlador bibliotecaCont = new BibliotecaControlador(bibliotecaDao,bibliotecaVista);
 		UsuarioControlador usuarioCont=new UsuarioControlador(usuarioDao,usuarioVista);
-		
 		LibroControlador libroCont = new LibroControlador(libroDao, libroVista);
 		
 		Scanner sc = new Scanner(System.in);
@@ -37,7 +36,7 @@ public class Principal {
 			opc = sc.nextInt();
 			
 			switch(opc) {
-				case 1: //Biblioteca
+				case 1: //CRUD Biblioteca
 					do {
 						System.out.println("1. Crear Biblioteca");
 						System.out.println("2. Actualizar Datos");
@@ -69,13 +68,17 @@ public class Principal {
 					
 					break;
 				case 2: //Seleccionar Biblioteca
+					
+					//Busca y devuelve una biblioteca
 					Biblioteca biblioteca = new Biblioteca();
 					String nombre = bibliotecaVista.buscarBiblioteca();
 			    	biblioteca = bibliotecaDao.obtenerBiblioteca(nombre);
 					
-			    	
+			    	//Cada controlador selecciona la biblioteca
 			    	usuarioCont.seleccionarBiblioteca(biblioteca);
 					libroCont.seleccionarBiblioteca(biblioteca);
+					
+					
 					do {
 						System.out.println("1.Usuarios");
 						System.out.println("2.Libros");
@@ -84,7 +87,7 @@ public class Principal {
 						opc = sc.nextInt();
 						switch(opc) {
 							
-							case 1:
+							case 1://Crud Usuario por biblioteca
 								do {
 									System.out.println("1. Crear Usuario");
 									System.out.println("2. Actualizar Datos");
@@ -114,7 +117,7 @@ public class Principal {
 									}
 								}while(opc!=5);
 								break;
-							case 2:
+							case 2://Crud Libro por biblioteca
 								do {
 									System.out.println("1. Crear Libro");
 									System.out.println("2. Actualizar Datos");

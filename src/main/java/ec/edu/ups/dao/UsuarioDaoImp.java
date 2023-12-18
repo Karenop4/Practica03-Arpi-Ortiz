@@ -65,7 +65,6 @@ public class UsuarioDaoImp implements IUsuarioDao{
 
 	@Override
 	public ArrayList<Usuario> obtenerListaUsuarios() {
-		// TODO Auto-generated method stub
 		return listaUsuarios;
 	}
 

@@ -61,7 +61,6 @@ public class BibliotecaDaoImp implements IBibliotecaDao {
 
 	@Override
 	public ArrayList<Biblioteca> obtenerListaBiblliotecas() {
-		// TODO Auto-generated method stub
 		return listaBibliotecas;
 	}
 	
