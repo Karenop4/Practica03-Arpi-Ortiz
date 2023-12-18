@@ -11,7 +11,7 @@ public class UsuarioVista {
 	}
 	
 	public Usuario ingresarDatosUsuario () {
-                String id;
+        String id;
 		String nombre;
 		String correo;
 		

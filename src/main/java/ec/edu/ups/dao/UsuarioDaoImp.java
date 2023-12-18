@@ -1,5 +1,6 @@
 package ec.edu.ups.dao;
 
+
 import ec.edu.ups.idao.IUsuarioDao;
 import ec.edu.ups.modelo.Biblioteca;
 import ec.edu.ups.modelo.Usuario;
@@ -8,24 +9,20 @@ import java.util.ArrayList;
 public class UsuarioDaoImp implements IUsuarioDao{
     
     private Biblioteca biblioteca;
+    private  ArrayList <Usuario> listaUsuarios;
     
     public UsuarioDaoImp() {
+    	listaUsuarios = new ArrayList();
     }
     
-    
-    @Override
-    public void crearUsuario(Usuario usuario) {
-        biblioteca.registrarUsuario(usuario);
-    }
 
     @Override
-    public boolean actualizarUsuario(String id, Usuario usuario) {
+    public boolean actualizarUsuario(String id, Usuario usuario, Biblioteca biblioteca) {
     	int cont=0;
-        ArrayList <Usuario> listaUsuarios = new ArrayList();
-        listaUsuarios = biblioteca.devolverListaUsuarios();
 		for(Usuario usuarioBuscado : listaUsuarios) {
 			if(usuarioBuscado.getIdentificacion().equals(id)) {
 				listaUsuarios.set(cont, usuarioBuscado);
+				biblioteca.actualizarUsuario(cont, usuario);
 				return true;
 			}
 			cont++;
@@ -36,8 +33,6 @@ public class UsuarioDaoImp implements IUsuarioDao{
     @Override
     public boolean eliminarUsuario(String id) {
     	int cont=0;
-        ArrayList <Usuario> listaUsuarios = new ArrayList();
-        listaUsuarios = biblioteca.devolverListaUsuarios();
 		for(Usuario usuarioBuscado : listaUsuarios) {
 			if(usuarioBuscado.getIdentificacion().equals(id)) {
 				listaUsuarios.remove(cont);
@@ -51,8 +46,6 @@ public class UsuarioDaoImp implements IUsuarioDao{
     @Override
     public Usuario obtenerUsuario(String id) {
     	int cont=0;
-        ArrayList <Usuario> listaUsuarios = new ArrayList();
-        listaUsuarios = biblioteca.devolverListaUsuarios();
 		for(Usuario usuarioBuscado : listaUsuarios) {
 			if(usuarioBuscado.getIdentificacion().equals(id)) {
 				return usuarioBuscado;
@@ -61,5 +54,17 @@ public class UsuarioDaoImp implements IUsuarioDao{
 		}
 		return null;        
     }
+
+
+	@Override
+	public void crearUsuario(Usuario usuario) {
+		listaUsuarios.add(usuario);
+	}
+
+
+	@Override
+	public ArrayList<Usuario> obtenerListaUsuarios() {
+		return listaUsuarios;
+	}
 
 }

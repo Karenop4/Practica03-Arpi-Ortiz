@@ -34,10 +34,9 @@ private Scanner sc;
                     System.out.println("Error al analizar la fecha. Asegúrese de usar el formato dd/MM/yyyy.");
                 }
 		return new Prestamo(libro, usuario, fechaDate, fechaDevolucion);
-	}
+        }
 	
-	
-	public String eliminarPrestamo () {
+	public String eliminarPrestamo() {
 		String nombre;
 		
 		System.out.println("                     Eliminar biblioteca");

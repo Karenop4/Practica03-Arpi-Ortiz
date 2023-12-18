@@ -31,9 +31,4 @@ public abstract class Persona {
 		this.identificacion = identificacion;
 	}
 	
-	
-	//Metodos
-	public abstract void mostrarInformacion();
-	
-	
 }

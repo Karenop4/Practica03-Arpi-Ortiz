@@ -1,6 +1,11 @@
 package ec.edu.ups.controlodares;
 
+import java.util.ArrayList;
+
+import ec.edu.ups.dao.BibliotecaDaoImp;
+import ec.edu.ups.idao.IBibliotecaDao;
 import ec.edu.ups.idao.IUsuarioDao;
+import ec.edu.ups.modelo.Biblioteca;
 import ec.edu.ups.modelo.Usuario;
 import ec.edu.ups.vistas.UsuarioVista;
 
@@ -9,28 +14,34 @@ public class UsuarioControlador {
 	private UsuarioVista usuarioVista;
 	private Usuario usuario;
 	
-	//Constructor
-
-        public UsuarioControlador(IUsuarioDao usuarioDao, UsuarioVista usuarioVista) {
-            this.usuarioDao = usuarioDao;
-            this.usuarioVista = usuarioVista;
-        }
-
-        public UsuarioControlador() {
-        }
-    
-
+	private Biblioteca biblioteca;
 	
+	//Constructor
+    
+	public UsuarioControlador(IUsuarioDao usuarioDao, UsuarioVista usuarioVista) {
+		this.usuarioDao = usuarioDao;
+		this.usuarioVista = usuarioVista;
+	}
+
+    
+	
+	public void seleccionarBiblioteca(Biblioteca biblioteca) {
+    	this.biblioteca = biblioteca;
+    }
+    
+    
 	public void crearUsuario() {
 		usuario = usuarioVista.ingresarDatosUsuario();
 		usuarioDao.crearUsuario(usuario);
+		biblioteca.registrarUsuario(usuario);
+		System.out.println("Usuario Creado");
 	}
 	
 	public void actualizarUsuario() {
 		boolean existe;
 		
 		usuario = usuarioVista.actualizarDatosUsuario();
-		existe = usuarioDao.actualizarUsuario(usuario.getIdentificacion(), usuario);
+		existe = usuarioDao.actualizarUsuario(usuario.getIdentificacion(), usuario, biblioteca);
 		
 		if(existe) {
 			System.out.println("Usuario actualizado correctamente");
@@ -44,6 +55,7 @@ public class UsuarioControlador {
 		
 		String id = usuarioVista.eliminarUsuario();
 		existe = usuarioDao.eliminarUsuario(id);
+		biblioteca.eliminarUsuario(usuario);
 		
 		if(existe) {
 			System.out.println("Usuario eliminado correctamente");
@@ -63,6 +75,12 @@ public class UsuarioControlador {
 			System.out.println("Usuario no encontrado");
 		}else {
 			usuarioVista.mostrarDatosUsuario(usuario.getNombre(), usuario.getCorreo(), usuario.getIdentificacion());
+		}
+	}
+	
+	public void listarUsuarios() {
+		for (Usuario usuario : biblioteca.devolverListaUsuarios()) {
+			usuarioVista.mostrarDatosUsuario(usuario.getNombre(),usuario.getCorreo(),usuario.getIdentificacion());
 		}
 	}
 	

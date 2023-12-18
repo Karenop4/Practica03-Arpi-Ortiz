@@ -35,24 +35,42 @@ public class Biblioteca {
 	}
 	
 	//Metodos
+	/////////Metodos para actualizar lista Usuarios////////
 	public void registrarUsuario(Usuario usuario) {
 		listaUsuarios.add(usuario);
 	}
 
-	public void registrarLibro(Libro libro) {
+    public ArrayList <Usuario> devolverListaUsuarios(){
+        return listaUsuarios;
+    }
+    
+    public void eliminarUsuario(Usuario usuario) {
+    	listaUsuarios.remove(usuario);
+    }
+	
+    public void actualizarUsuario(int pos, Usuario usuario) {
+    	listaUsuarios.set(pos, usuario);
+    }
+    
+    
+    /////////Metodos para actualizar lista Libros////////
+    public void registrarLibro(Libro libro) {
 		listaLibros.add(libro);
 	}
 	
 	public ArrayList<Libro> devolverListaLibros() {
 		return listaLibros;
 	}
-	
-
-    public ArrayList <Usuario> devolverListaUsuarios(){
-        return listaUsuarios;
+    
+    public void eliminarLibro(Libro libro) {
+    	listaLibros.remove(libro);
     }
-
 	
+    public void actualizarLibro(int pos, Libro libro) {
+    	listaLibros.set(pos, libro);
+    }
+    
+    
 	@Override
 	public String toString() {
 		return "Biblioteca [nombre=" + nombre + ", direccion=" + direccion + "]";
