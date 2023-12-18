@@ -26,8 +26,7 @@ public class Usuario extends Persona{
 	}
 	
 	//Metodos
-	public void solicitarPrestamo(Libro libro, Usuario usuario, Date fechaPrestamo, Date fechaDevolucion) {//Creacion lista de préstamos
-		Prestamo nuevoPrestamo = new Prestamo (libro, usuario, fechaPrestamo, fechaDevolucion);	
+	public void solicitarPrestamo(Prestamo nuevoPrestamo) {//Creacion lista de préstamos
 		listaPrestamos.add(nuevoPrestamo);
 	}
 	
@@ -43,5 +42,9 @@ public class Usuario extends Persona{
 			}
 		}
 	}
+        
+	public ArrayList<Prestamo> devolverListaPrestamos() {
+		return listaPrestamos;
+	}        
 	
 }

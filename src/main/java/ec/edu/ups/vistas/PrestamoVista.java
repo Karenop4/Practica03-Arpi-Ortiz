@@ -1,5 +1,6 @@
 package ec.edu.ups.vistas;
 
+import ec.edu.ups.dao.LibroDaoImp;
 import ec.edu.ups.modelo.Libro;
 import ec.edu.ups.modelo.Prestamo;
 import ec.edu.ups.modelo.Usuario;
@@ -16,13 +17,21 @@ private Scanner sc;
 		sc = new Scanner(System.in);
 	}
 	
-	public Prestamo ingresarNuevoPrestamo (Libro libro, Usuario usuario) {
+	public Prestamo ingresarNuevoPrestamo (Usuario usuario) {
+		LibroDaoImp libroDao = new LibroDaoImp();
 		Date fechaDevolucion = null;
                 LocalDate fechaActual = LocalDate.now();
                 Date fechaDate = java.sql.Date.valueOf(fechaActual);
 		
 		System.out.println("                  Ingreso nuevo Prestamo");
 		System.out.println("============================================================");
+                System.out.println("Ingrese el nombre del libro: ");
+                String titulo = sc.next();
+                Libro libro = libroDao.obtenerLibro(titulo);
+                if (libro.isDisponoible()==false) {
+                    System.out.println("Libro no disponible!");
+                    return null;
+                }
                 System.out.print("Ingrese la fecha de devolucion (formato: dd/MM/yyyy): ");
                 String fechaIngresada = sc.next();
 
@@ -36,30 +45,30 @@ private Scanner sc;
 		return new Prestamo(libro, usuario, fechaDate, fechaDevolucion);
         }
 	
-	public String eliminarPrestamo() {
-		String nombre;
-		
-		System.out.println("                     Eliminar biblioteca");
+	public Libro eliminarPrestamo() {
+                LibroDaoImp libroDao = new LibroDaoImp();
+		String nombre;		
+		System.out.println("                     Devolucion de libro");
 		System.out.println("============================================================");
-		System.out.println("Ingrese el nombre de la biblioteca: ");
-		nombre = sc.nextLine();
-		return nombre;
+		System.out.println("Ingrese el nombre del libro a devolver: ");
+                nombre = sc.nextLine();
+                Libro libro = libroDao.obtenerLibro(nombre);
+		return libro;
 	}
 	
-	public String buscarPrestamo () {
-		String nombre;
-		
-		System.out.println("                      Buscar prestamo");
-		System.out.println("============================================================");
-		System.out.println("Ingrese el nombre de la biblioteca: ");
-		nombre = sc.nextLine();
-		return nombre;
-	}
 	
-	public void mostrarDatosPrestamo(String nombre, String direccion) {
+	public void mostrarDatosPrestamo(String titulo, String autor, int anho, boolean vigencia, Date fechaDev) {
+                SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaFormateada = formatoFecha.format(fechaDev);
 		System.out.println("============================================================");
-		System.out.println("Biblioteca '"+nombre+"'");
-		System.out.println("Dirección: "+direccion);
+		System.out.println("Libro '"+titulo+"'");
+		System.out.println("Autor: "+autor);
+                System.out.println("Anho: "+anho);
+                if (vigencia) {
+                    System.out.println("Prestamo vigente hasta "+fechaDev);
+                }else{
+                    System.out.println("Vigencia expirada! Llamando a las autoridades");
+                }
 		System.out.println("============================================================");
 	}
 }
