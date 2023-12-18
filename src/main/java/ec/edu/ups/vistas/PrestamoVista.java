@@ -1,7 +1,5 @@
 package ec.edu.ups.vistas;
 
-import ec.edu.ups.dao.LibroDaoImp;
-import ec.edu.ups.idao.ILibroDao;
 import ec.edu.ups.modelo.Biblioteca;
 import ec.edu.ups.modelo.Libro;
 import ec.edu.ups.modelo.Prestamo;
@@ -52,6 +50,7 @@ private Scanner sc;
 	
 	public Libro eliminarPrestamo(Usuario usuario) {
 		String nombre;		
+                sc.nextLine(); // Limpiar el buffer
 		System.out.println("                     Devolucion de libro");
 		System.out.println("============================================================");
 		System.out.println("Ingrese el nombre del libro a devolver: ");

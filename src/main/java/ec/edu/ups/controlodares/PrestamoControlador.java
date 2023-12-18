@@ -40,7 +40,7 @@ public class PrestamoControlador {
 		boolean existe;
 		
 		Libro libro = prestamoVista.eliminarPrestamo(usuario);
-		existe = prestamoDao.eliminarPrestamo(libro);
+		existe = prestamoDao.eliminarPrestamo(libro, usuario);
 		if(existe) {
                         usuario.devolverLibro(libro);
 			System.out.println("Libro ha sido devuelto!");

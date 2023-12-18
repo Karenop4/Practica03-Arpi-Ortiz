@@ -20,7 +20,7 @@ public class PrestamoDaoImp implements IPrestamoDao {
         listaPrestamos.add(prestamo);
     }
 
-    public boolean eliminarPrestamo(Libro libro) {
+    public boolean eliminarPrestamo(Libro libro, Usuario usuario) {
         listaPrestamos = usuario.devolverListaPrestamos();
         int cont=0;
         for(Prestamo prestamoBuscado : listaPrestamos) {

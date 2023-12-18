@@ -185,6 +185,8 @@ public class Principal {
                                                                                 System.out.println("ERROR!! Elija otra opción");
                                                                             }
                                                                     }while(opc!=4);
+                                                                }else{
+                                                                    System.out.println("El usuario no existe");
                                                                 }
 								break;
 							case 4:
