@@ -23,11 +23,12 @@ public class LibroDaoImp implements ILibroDao{
 	}
 
 	@Override
-	public boolean actualizarLibro(String titulo, Libro libro) {
+	public boolean actualizarLibro(String titulo, Libro libro , Biblioteca biblioteca) {
 		int cont=0;
 		for(Libro libroBuscado : listaLibros) {
 			if(libroBuscado.getTitulo().equals(titulo)) {
 				listaLibros.set(cont, libroBuscado);
+				biblioteca.actualizarLibro(cont, libro);
 				return true;
 			}
 			cont++;

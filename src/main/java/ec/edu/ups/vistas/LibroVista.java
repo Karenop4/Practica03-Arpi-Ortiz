@@ -16,7 +16,7 @@ private Scanner sc;
 		String autor;
 		int anho;
 		boolean disponible;
-		
+		sc.nextLine(); // Limpiar el buffer
 		System.out.println("                  Ingreso nuevo Libro");
 		System.out.println("============================================================");
 		System.out.println("Ingrese el titulo del libro: ");
@@ -40,7 +40,7 @@ private Scanner sc;
 		String autor;
 		int anho;
 		boolean disponible;
-		
+		sc.nextLine();
 		System.out.println("                  Actualizar datos Libro");
 		System.out.println("============================================================");
 		System.out.println("Ingrese el titulo del libro: ");
@@ -79,7 +79,7 @@ private Scanner sc;
 		return titulo;
 	}
 	
-	public void mostrarDatosLibro(String titulo,String autor,String anho,boolean disponible) {
+	public void mostrarDatosLibro(String titulo,String autor,int anho,boolean disponible) {
 		System.out.println("============================================================");
         System.out.println("Título: "+titulo);
 		System.out.println("Autor '"+autor);

@@ -72,9 +72,4 @@ public class Libro implements IPrestable{
 	public String toString() {
 		return "Libro [titulo=" + titulo + ", autor=" + autor + ", anho=" + anho + ", disponoible=" + disponoible + "]";
 	}
-	
-	
-	
-	
-
 }

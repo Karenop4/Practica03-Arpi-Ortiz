@@ -11,10 +11,15 @@ public class BibliotecaControlador {
 	private BibliotecaVista bibliotecaVista;
 	private Biblioteca biblioteca;
 	
+	private IUsuarioDao usuarioDao;
+	private UsuarioVista usuarioVista;
+	private Usuario usuario;
 	//Constructor
-	public BibliotecaControlador(IBibliotecaDao bibliotecaDao, BibliotecaVista bibliotecaVista) {
+	public BibliotecaControlador(IBibliotecaDao bibliotecaDao, BibliotecaVista bibliotecaVista, IUsuarioDao usuarioDao, UsuarioVista usuarioVista) {
 		this.bibliotecaDao = bibliotecaDao;
 		this.bibliotecaVista = bibliotecaVista;
+		this.usuarioDao = usuarioDao;
+		this.usuarioVista = usuarioVista;
 	}
 	
 	
@@ -50,25 +55,10 @@ public class BibliotecaControlador {
 		}
 	}
 	
-	public void buscarBiblioteca() {
-		String nombre;
-		Biblioteca biblioteca;
-		
-		nombre = bibliotecaVista.buscarBiblioteca();
-		biblioteca = bibliotecaDao.obtenerBiblioteca(nombre);
-		
-		if(biblioteca == null) {
-			System.out.println("Biblioteca no encontrada");
-		}else {
-			bibliotecaVista.mostrarDatosBiblioteca(biblioteca.getNombre(), biblioteca.getDireccion());
-		}
-	}
-	
 	public void listarBibliotecas() {
 		ArrayList <Biblioteca> listaBibliotecas = bibliotecaDao.obtenerListaBiblliotecas();
 		for (Biblioteca biblioteca : listaBibliotecas) {
 			bibliotecaVista.mostrarDatosBiblioteca(biblioteca.getNombre(), biblioteca.getDireccion());
 		}
 	}
-	
 }

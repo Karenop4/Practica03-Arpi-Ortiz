@@ -2,6 +2,8 @@ package ec.edu.ups.controlodares;
 
 import java.util.ArrayList;
 
+import ec.edu.ups.dao.BibliotecaDaoImp;
+import ec.edu.ups.idao.IBibliotecaDao;
 import ec.edu.ups.idao.IUsuarioDao;
 import ec.edu.ups.modelo.Biblioteca;
 import ec.edu.ups.modelo.Usuario;
@@ -11,25 +13,27 @@ public class UsuarioControlador {
 	private IUsuarioDao usuarioDao;
 	private UsuarioVista usuarioVista;
 	private Usuario usuario;
+	
 	private Biblioteca biblioteca;
 	
 	//Constructor
     
-
-    public UsuarioControlador(IUsuarioDao usuarioDao, UsuarioVista usuarioVista) {
+	public UsuarioControlador(IUsuarioDao usuarioDao, UsuarioVista usuarioVista) {
 		this.usuarioDao = usuarioDao;
 		this.usuarioVista = usuarioVista;
 	}
 
     
-    public void seleccionarBiblioteca(Biblioteca biblioteca) {
-    	this.biblioteca = biblioteca;	
+	
+	public void seleccionarBiblioteca(Biblioteca biblioteca) {
+    	this.biblioteca = biblioteca;
     }
+    
     
 	public void crearUsuario() {
 		usuario = usuarioVista.ingresarDatosUsuario();
-		biblioteca.registrarUsuario(usuario);
 		usuarioDao.crearUsuario(usuario);
+		biblioteca.registrarUsuario(usuario);
 		System.out.println("Usuario Creado");
 	}
 	
@@ -75,8 +79,7 @@ public class UsuarioControlador {
 	}
 	
 	public void listarUsuarios() {
-		ArrayList <Usuario> listaUsuarios = usuarioDao.obtenerListaUsuarios();
-		for (Usuario usuario : listaUsuarios) {
+		for (Usuario usuario : biblioteca.devolverListaUsuarios()) {
 			usuarioVista.mostrarDatosUsuario(usuario.getNombre(),usuario.getCorreo(),usuario.getIdentificacion());
 		}
 	}
